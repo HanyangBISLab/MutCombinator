@@ -1,0 +1,137 @@
+### VariantGraph Construction Mode ###
+
+# GTF=[FILEPATH] 
+# Specifies a GTF file for gene models to construct a variant graph.
+GTF=testSet/gtf/testOneGene.gtf
+
+# FASTA=[FOLDERPATH]
+# Specifies a folder that contains Fasta files to construct a variant graph.
+# Fasta files are divided by each chromosome.
+# Fasta file's name must be the same with Chromosome in GTF file.
+FASTA=testSet/fasta
+
+# VCF=[FILEPATH|FOLDERPATH]
+# Specifies a file/folder that contains VCF files representing mutations.
+VCF=testSet/vcf
+
+
+### Variant Graph Search Mode ###
+
+# Spectra=[FILEPATH|FOLDERPATH]
+# Specifies a path to the spectra file to search.
+# Supported formats are *.mgf, *.pkl, *.dta, and *.mzXML.
+Spectra=testSet/mgf
+
+# VariantGraph=[FILEPATH]
+# Specifies a path to the variant graph file to search.
+VariantGraph=VariantGraph.txt
+
+# Instrument=[TYPE(ESI-TRAP|ESI-QTOF)]
+# Specifies the type of MS/MS instrument used (or best matched) for peptide fragmentation.
+# According to the instrument type, a different fragmentation model is applied.
+# Default value is ESI-TRAP.
+Instrument=ESI-QTOF
+
+# PPMTolerance=[VALUE] 
+# Sets a parent mass tolerance in ppm. Default value is 10.
+PPMTolerance=10
+
+# AutoPMCorrection=[0|1]
+# If this parameter is set to 1 (this requires more search time), the program will automatically find the optimal parent mass for the input spectrum, regardless of the specified PeptTolerance.
+# This parameter would be useful when some spectra have bigger mass error than what you specify in PeptTolerance parameter. 
+# The default value is 0.
+AutoPMCorrection=0
+
+# FragTolerance=[MASS]
+# Sets a fragment ion mass tolerance in Dalton. Default value is 0.025.
+FragTolerance=0.025
+
+# MinPeptLen=[LENGTH]
+# Sets a minimum peptide length to consider
+# Default value is 8.
+MinPeptLen=8
+
+# MinTagLen=[3|4]
+# Sets a length of tag
+# Length 4 is much faster than length 3
+# Default value is 3.
+MinTagLen=3
+
+# BlindMode=[0|1]
+# Sets the number of modifications per peptide, default value is 0
+# 0 allows no modification per peptide,
+# 1 allows one modification per peptide (slow)
+BlindMode=0
+
+# MinModSize=[SIZE]
+# MaxModSize=[SIZE]
+# Sets the minimum/maximum modification size in dalton to consider, default values are 0. 
+MinModSize=0
+MaxModSize=0
+
+# Mut=[NUMBER] (Integer >= 0)
+# Sets the number of maximum mutations per peptide. Default value is 3.
+Mut=3
+
+# Enzyme=[PATH]{,[CLEAVAGE/TERMINUS(N|C)]}*
+# Specifies the reagent used for protein digestion
+# Default value (not specified) is 'NONE(for non-enzyme search)'.
+# Enzyme=Trypsin, KR/C
+# Enzyme=LysN, K/N
+# Enzyme=LysC+AspN, K/C, D/N
+Enzyme=Trypsin, KR/C
+
+# enzyme_constraint_min_number_termini=[0|1|2]
+# Set the number of enzymatic termini allowed during search.
+# Default value is 1.
+enzyme_constraint_min_number_termini=1
+
+# MissedCleavage=[NUMBER]
+# Sets the number of allowed missed cleavage sites. Default value is 2.
+MissedCleavage=2
+
+# ADD=[RESIDUE],[MASS]
+# Specifies the mass (in Dalton) of a fixed (static) modification on a residue. (e.g. cysteine alkylation, isotope labeling)
+# ADD=NTerm, 0.0000
+# ADD=CTerm, 0.0000
+# ADD=A, 0.0000
+ADD=C, 57.021464
+# ADD=D, 0.0000
+# ADD=E, 0.0000
+# ADD=F, 0.0000
+# ADD=G, 0.0000
+# ADD=H, 0.0000
+# ADD=I, 0.0000
+# ADD=K, 0.0000
+# ADD=L, 0.0000
+# ADD=M, 0.0000
+# ADD=N, 0.0000
+# ADD=P, 0.0000
+# ADD=Q, 0.0000
+# ADD=R, 0.0000
+# ADD=S, 0.0000
+# ADD=T, 0.0000
+# ADD=V, 0.0000
+# ADD=W, 0.0000
+# ADD=Y, 0.0000
+
+# Protocol=[iTRAQ4plex/iTRAQ8plex/TMT2plex/TMT6plex/TMT10plex/NONE]
+# Before peptide spectrum match, NextSearch removes iTRAQ or TMT reporter ion peaks, isobaric tag peaks & isobaric tag complementary peaks, so that those peaks are not used for fragment ion match.
+# Default value is NONE.
+Protocol=NONE
+
+# HighResolution=[ON|OFF] 
+# When HighResolution is turned on and fragment tolerance is larger than precursor tolerance, fragment tolerance is reduced to precursor tolerance.
+# Default value is OFF.
+HighResolution=OFF
+
+# DecoySearch=[ON|OFF]
+# Reverse decoy of the target sequence is automatically generated and searched when set as ON.
+# Default value is ON.
+DecoySearch=ON
+
+# SearchRegion=[CODING|NONCODING]
+# Specifies the search region of interests.
+# It searches non-coding regions in the variant graph using three frame translation when set as NONCODING.
+# Default value is CODING.
+SearchRegion=CODING
